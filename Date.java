@@ -1,35 +1,59 @@
+package es.unileon.prg1.Date;
 public class Date{
 	private int year;
 	private int month;
 	private int day;
 
-	public Date (int day,int month,int year){
-		this.day=day;
+	public Date (int day,int month,int year) throws DateException {
+		StringBuffer message= new StringBuffer();
+		//esta  bien?
+		if(day<=0){
+			message.append("no se admiten valores negativos para los dias - error dato:" + day + "\n");
+		}
+		if(month<=0){
+			message.append("no se admiten valores negativos para los meses - error dato:" + month + "\n");
+		}
+		if(month<12){
+			message.append("no se admiten valores superiores a 12 para los meses - error dato:" + month + "\n");
+		}
+		if(){
+			throw new DateException(message);	//lanzo excepcion
+		}
+		else{
+		
 		this.month=month;
 		this.year=year;
+		this.day=day;
 		}
-	boolean isSameYear (Date otherDate){
+	}
+	public boolean isSameYear (Date otherDate){
 			return this.year==otherDate.getyear();
 			}
-	boolean isSameMonth (Date otherDate){
+	public boolean isSameMonth (Date otherDate){
 			return this.month==otherDate.getmonth();
 			}
-	boolean isSameDay (Date otherDate){
+	public boolean isSameDay (Date otherDate){
 			return this.day==otherDate.getday();
 			}
-	int getyear (){
+	public int getyear (){
 			return this.year;
 			}
-	int getmonth (){
+	public int getmonth (){
 			return this.month;
 			}
-	int getday (){
+	public int getday (){
 			return this.day;
 			}
-	void setDay (int day){
+	public void setDay (int day){
 			this.day=day;
 			}
-	boolean isSame (Date another){
+	public void setYear (int year){
+			this.year=year;
+			}
+	public void setMonth (int month){
+			this.month=month;
+			}
+	public boolean isSame (Date another){
 			return ((isSameYear(another))&&(isSameMonth(another))&&(isSameDay(another)));
 			}
 	
@@ -99,5 +123,35 @@ public class Date{
 				
 		}
 		return (month);
-	} 
+	}
+	private int MonthRight (){
+			String monthRight=new String ("");
+		
+			switch (month) {
+				case 1:
+				case 3:
+				case 5:
+				case 7:
+				case 8:
+				case 10:
+				case 12:
+						if (day<=31 || day <=1){
+						}
+							break;
+						
+					
+				case 2:
+						if (day<=28 || day <=1){
+						}
+							break;
+					
+				case 4:
+				case 6:
+				case 9:
+				case 11:
+						if (day<=30 || day <=1){
+						}
+							break;
+			}
+	}
 }
